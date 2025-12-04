@@ -17,11 +17,18 @@ func New(cfg *config.Config) (*Sqlite, error) {
 		return nil, err
 	}
 
-	db.Exec(`CREATE TABLE IF NOT EXISTS students(
-	id INTEGER PRIMARY KEY AUTOINCREAMENT,
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS students(
+	id INT-EGER PRIMARY KEY AUTOINCREAMENT,
 	name TEXT,
 	email TEXT,
-	age INTEGER,
+	age INTEGER
 	)`)
+	if err !=nil {
+		return nil, err
+	}
+
+	return &Sqlite{
+		Db: db,
+	}, nil
 
 }
