@@ -9,11 +9,12 @@ import (
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/shofiqebr/students-apis/internal/storage"
 	"github.com/shofiqebr/students-apis/internal/types"
 	"github.com/shofiqebr/students-apis/internal/utils/response"
 )
 
-func New() http.HandlerFunc {
+func New(storage storage.Storage) http.HandlerFunc {
 	return func (w http.ResponseWriter, r *http.Request)  {
 		slog.Info("creating a student")
 		var student types.Student
